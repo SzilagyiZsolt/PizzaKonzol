@@ -10,31 +10,32 @@ namespace Pizza
     {
         static Database db = new Database();
         static List<Futar> futarok = new List<Futar>();
+        static List<Futar> Topfutar = new List<Futar>();
+        static List<Futar> osszertek = new List<Futar>();
         static void Main(string[] args)
         {
             futarok = db.getAllfutarok();
+            Topfutar = db.getTopfutarok();
+            osszertek = db.getossz();
             feladat01();
             feladat02();
-            //feladat03();
+            feladat03();
             Console.WriteLine("Program vége");
             Console.ReadLine();
         }
 
-        //private static void feladat03()
-        //{
-        //    //Hányan dolgoznak az egyes részlegeken
-        //    Console.WriteLine("3. feladat");
-        //    foreach (var dolgozo in dolgozok.GroupBy(a => a.reszleg).Select(b => new { reszleg = b.Key, letszam = b.Count() }).OrderBy(x => x.letszam))
-        //    {
-        //        Console.WriteLine($"\t{dolgozo.reszleg} - {dolgozo.letszam} fő");
-        //    }
-        //}
-        //
+        private static void feladat03()
+        {
+            //Hányan dolgoznak az egyes részlegeken
+            Console.WriteLine("3. feladat");
+            Console.WriteLine($"\tAz összes kiszállított pizza értéke: {osszertek[0].osszpizza}");
+        }
+        
         private static void feladat02()
         {
             //A legkisebb értékben értékesítő futár nevét írja ki 
             Console.WriteLine("2. feladat");
-            foreach (var f in futarok)
+            foreach (var f in Topfutar)
             {
                 Console.WriteLine($"\t{f.fnev} - {f.ertek}");
             }
